@@ -10,7 +10,6 @@ export const SearchProvider = ({ children }) => {
   useEffect(() => {
     const repos = localStorage.getItem("favorites");
     setRepositories(JSON.parse(repos));
-    console.log(JSON.parse(repos));
   }, [languageSelected]);
 
   return (

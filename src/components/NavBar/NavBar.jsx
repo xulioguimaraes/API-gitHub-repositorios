@@ -27,7 +27,7 @@ export const NavBar = () => {
           left: 0,
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Box
               justifyContent={"space-between"}

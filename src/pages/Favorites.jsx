@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Footer } from "../components/Footer/Footer";
 import { ToggleButton } from "../components/ToggleButton/ToggleButton";
 import { useValues } from "../hooks/useValues";
 
@@ -9,12 +8,13 @@ export const Favorites = () => {
   const handleSelected = () => {};
   return (
     <>
-      <Box mt={12}>
+      <Box component="main" mt={12} >
         <Typography>Lista de Repositorios Favoritos</Typography>
         {repositories.map((item) => {
           return <ToggleButton item={item} handleSelected={handleSelected} />;
         })}
       </Box>
+      <Footer/>
     </>
   );
 };

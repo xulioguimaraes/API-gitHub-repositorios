@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { api } from "../services/api";
 import { useValues } from "../hooks/useValues";
 import { ToggleButton } from "../components/ToggleButton/ToggleButton";
+import { Text } from "../components/Text/Text";
 
 function Home() {
   const { valueSearch, setValueSearch, languageSelected, setLanguageSelected } =
@@ -94,7 +95,6 @@ function Home() {
     setLanguageSelected(repositories);
     setControler(!controler);
   };
-  const setDuplicateRepos = new Set();
   useEffect(() => {
     if (languageSelected?.length > 0 && selected) {
       let localFavorites = localStorage.getItem("favorites");
@@ -106,7 +106,6 @@ function Home() {
       }
     }
   }, [languageSelected]);
-
   return (
     <>
       <Box
@@ -163,11 +162,6 @@ function Home() {
                       </Button>
                     );
                   })}
-              {valueSearch.length > 0 && filterLanguages.length === 0 && (
-                <>
-                  <Typography>Nenhum resultado encontrado</Typography>
-                </>
-              )}
             </>
           )}
 
@@ -179,13 +173,14 @@ function Home() {
               );
             })}
         </Box>
+        {valueSearch.length > 0 && filterLanguages.length === 0 && (
+          <>
+            <Text title="Nenhuma linguagem encontrada" />
+          </>
+        )}
         {selected && languageSelected.length === 0 && !isLoading && (
           <>
-            <Box display={"flex"} justifyContent={"center"} alignItems="center">
-              <Typography component="h1" fontWeight="bold" fontSize={26}>
-                Nenhum resultado encontrado
-              </Typography>
-            </Box>
+            <Text title="Nenhum resultado encontrado" />
           </>
         )}
       </Box>
