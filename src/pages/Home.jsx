@@ -86,6 +86,23 @@ function Home() {
 
   const handleSelected = (repo) => {
     let localFavorites = localStorage.getItem("favorites");
+    localFavorites = JSON.parse(localFavorites);
+    if (repo.selected === false) {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify([
+          ...localFavorites,
+          { ...repo, selected: !repo.selected },
+        ])
+      );
+    } else {
+      if (localFavorites.some((item) => item.id === repo.id)) {
+        localStorage.setItem(
+          "favorites",
+          JSON.stringify(localFavorites.filter((item) => item.id !== repo.id))
+        );
+      }
+    }
     const repositories = languageSelected.map((item) => {
       if (item.id === repo.id) {
         return { ...item, selected: !item.selected };
@@ -95,17 +112,7 @@ function Home() {
     setLanguageSelected(repositories);
     setControler(!controler);
   };
-  useEffect(() => {
-    if (languageSelected?.length > 0 && selected) {
-      let localFavorites = localStorage.getItem("favorites");
-      let repoFiltered = languageSelected.filter(
-        (item) => item.selected === true
-      );
-      if (repoFiltered.length > 0) {
-        localStorage.setItem("favorites", JSON.stringify(repoFiltered));
-      }
-    }
-  }, [languageSelected]);
+
   return (
     <>
       <Box
