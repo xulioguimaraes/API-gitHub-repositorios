@@ -16,7 +16,14 @@ export const Footer = () => {
         borderColor={"gray"}
         bgcolor="#1976d2"
       >
-        <Typography component={"h1"}  fontSize={22} fontWeight="bold" color={"#FFF"}>Obrigado</Typography>
+        <Typography
+          component={"h1"}
+          fontSize={22}
+          fontWeight="bold"
+          color={"#FFF"}
+        >
+          Obrigado
+        </Typography>
       </Box>
     </>
   );
